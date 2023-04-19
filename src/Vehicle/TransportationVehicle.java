@@ -58,11 +58,6 @@ public abstract class TransportationVehicle {
         return Double.compare(that.distanceTraveled, distanceTraveled) == 0 && maxPassenger == that.maxPassenger && maxSpeed == that.maxSpeed && Objects.equals(model, that.model);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(model, distanceTraveled, maxPassenger, maxSpeed);
-    }
-
     //abstract methods
     public abstract String getType();
 

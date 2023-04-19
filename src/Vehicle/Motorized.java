@@ -2,8 +2,8 @@ package Vehicle;
 
 public interface Motorized {
 
-    public void setAvgFuelConsumption(double avgFuelConsumption);
-    double getAverageFuelConsumption();
+    public void setAvgFuelConsumption(int fuelConsumption);
+    public int getAverageFuelConsumption();
     public void setAvgLifetime(int avgLifetime);
-    int getAvgLifetime();
+    public int getAvgLifetime();
 }

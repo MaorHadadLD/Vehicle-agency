@@ -1,21 +1,19 @@
 package Vehicle;
 
+import java.util.Objects;
+
 public class ToyGlider extends AirTransport implements NonMotorized{
 
     private String powerSource;
-    private char energyScore;
+    private EnergyScore energyScore;
 
-    public ToyGlider(String model, int maxSpeed) {
-        super(model, 0, 10);
-        this.powerSource = "manual";
-        this.energyScore = 'A';
+    public ToyGlider() {
+        super("Toy", 0, 10, "civilian");
+        setPowerSource("manual") ;
+        setEnergyScore(EnergyScore.A);
     }
 
 
-    @Override
-    public String getLicenseType() {
-        return null;
-    }
 
     @Override
     public void setPowerSource(String powerSource) {
@@ -29,13 +27,29 @@ public class ToyGlider extends AirTransport implements NonMotorized{
     }
 
     @Override
-    public void setEnergyScore(String energyScore) {
-        this.energyScore = energyScore.charAt(0);
-
+    public void setEnergyScore(EnergyScore energyScore) {
+        this.energyScore = energyScore;
     }
 
     @Override
-    public char getEnergyScore() {
+    public EnergyScore getEnergyScore() {
         return energyScore;
+    }
+
+    public String toString() {
+        return getType() + ": " + super.toString() + "Source power: " + getPowerSource() +
+                "the energy score is: " + getEnergyScore() + ".";
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        ToyGlider toyGlider = (ToyGlider) o;
+
+        if (!Objects.equals(powerSource, toyGlider.powerSource))
+            return false;
+        return energyScore == toyGlider.energyScore;
     }
 }

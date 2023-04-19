@@ -2,26 +2,45 @@ package Vehicle;
 
 import java.util.Objects;
 
-public class Jeep extends LandTransport implements Motorized, Commercial {
+public class Jeep extends LandTransport implements Motorized, Commercial{
 
     private String licenseType;
-    private double avgFuelConsumption;
+    private int avgFuelConsumption;
     private int avgEngineLife;
 
-    public Jeep(String model, int maxPassengers, int maxSpeed, double avgFuelConsumption, int avgEngineLife) {
+    public Jeep(String model, int maxPassengers, int maxSpeed, int avgFuelConsumption, int avgEngineLife) {
         super(model, maxPassengers, maxSpeed, "Dirt");
         this.avgFuelConsumption = avgFuelConsumption;
         this.avgEngineLife = avgEngineLife;
         this.licenseType = "MINI";
     }
 
-    public double getAvgFuelConsumption() {
+    @Override
+    public String getType() {
+        return "Jeep";
+    }
+
+    @Override
+    public int getAverageFuelConsumption() {
         return avgFuelConsumption;
     }
 
-    public int getAvgEngineLife() {
+    @Override
+    public void setAvgFuelConsumption(int fuelConsumption) {
+        this.avgFuelConsumption = fuelConsumption;
+
+    }
+
+    @Override
+    public int getAvgLifetime() {
         return avgEngineLife;
     }
+
+    @Override
+    public void setAvgLifetime(int avgLifetime) {
+        this.avgEngineLife = avgLifetime;
+    }
+
 
     public String getLicenseType() {
         return licenseType;
@@ -32,10 +51,10 @@ public class Jeep extends LandTransport implements Motorized, Commercial {
     }
 
     public String toString() {
-        return "Jeep: Model: " + getmodel() +
+        return  getType() + "Model: " + getmodel() +
                 ", traveled: " + getDistanceTraveled() + " [Km]" +
                 ", Max Speed of " + getMaxSpeed() + " [Mph]" +
-                ", can cerry max of " + getMaxPassenger() + " people." +
+                ", can get max of " + getMaxPassenger() + " people." +
                 " Commercial license: " + licenseType +
                 ", Avg Fuel Consumption: " + avgFuelConsumption +
                 ", Avg Engine Life: " + avgEngineLife + " rears.";
@@ -53,50 +72,5 @@ public class Jeep extends LandTransport implements Motorized, Commercial {
                 avgEngineLife == jeep.avgEngineLife &&
                 Objects.equals(licenseType, jeep.licenseType);
 
-    }
-
-    @Override
-    public String getType() {
-        return null;
-    }
-
-    @Override
-    public void setAvgFuelConsumption(double avgFuelConsumption) {
-
-    }
-
-    @Override
-    public double getAverageFuelConsumption() {
-        return 0;
-    }
-
-    @Override
-    public void setAvgLifetime(int avgLifetime) {
-
-    }
-
-    @Override
-    public int getAvgLifetime() {
-        return 0;
-    }
-
-    @Override
-    public void setPowerSource(String powerSource) {
-
-    }
-
-    @Override
-    public String getPowerSource() {
-        return null;
-    }
-
-    @Override
-    public void setEnergyScore(String energyScore) {
-
-    }
-
-    @Override
-    public char getEnergyScore() {
-        return 0;
     }
 }

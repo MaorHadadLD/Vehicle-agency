@@ -2,47 +2,50 @@ package Vehicle;
 
 public class Frigate extends SeaTransport implements Motorized {
 
-    private double avgFuelConsumption;
+    private int avgFuelConsumption;
     private int avgEngineLife;
 
-    public Frigate(String model, int maxPassengers, int maxSpeed, double avgFuelConsumption, int avgLifetime) {
-        super(model, maxPassengers, maxSpeed);
-        this.avgFuelConsumption = 500;
-        this.avgEngineLife = 4;
-        setFlag("State of Israel");
+    public Frigate(String model, int maxPassengers, int maxSpeed, boolean isSailingWithWind) {
+        super(model, maxPassengers, maxSpeed, isSailingWithWind, "Israel");
+        setAvgFuelConsumption(500);
+        setAvgLifetime(4);
     }
 
-    public double getAvgFuelConsumption() {
+    public int getAverageFuelConsumption() {
         return avgFuelConsumption;
     }
 
-    public int getAvgEngineLife() {
+    public void setAvgFuelConsumption(int fuelConsumption) {
+        avgFuelConsumption = fuelConsumption;
+    }
+
+    public int getAvgLifetime() {
         return avgEngineLife;
+    }
+
+    public void setAvgLifetime(int avgLifetime) {
+        avgEngineLife = avgLifetime;
     }
 
     public String getType() {
         return "Frigate";
     }
 
-    @Override
-    public void setAvgFuelConsumption(double avgFuelConsumption) {
-        this.avgFuelConsumption = avgFuelConsumption;
 
+
+    public String toString() {
+        return getType() + ": " + super.toString() + "engine: " + getAverageFuelConsumption() +
+                "liter, life time of the engine " + getAvgLifetime() + "years.";
     }
 
-    @Override
-    public double getAverageFuelConsumption() {
-        return avgFuelConsumption;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Frigate frigate = (Frigate) o;
+        if(Float.compare(frigate.avgFuelConsumption, avgFuelConsumption) != 0) return false;
+        return avgEngineLife == frigate.avgEngineLife;
     }
 
-    @Override
-    public void setAvgLifetime(int avgLifetime) {
-        this.avgEngineLife = avgLifetime;
-
-    }
-
-    @Override
-    public int getAvgLifetime() {
-        return avgEngineLife;
-    }
 }

@@ -1,14 +1,16 @@
 package Vehicle;
 
-public  class SeaTransport extends TransportationVehicle {
+import java.util.Objects;
 
-    private boolean isSailingWithWind;
-    private String countryFlag;
+public abstract class SeaTransport extends TransportationVehicle {
 
-    public SeaTransport(String model, int maxPassengers, int maxSpeed) {
+    protected boolean isSailingWithWind;
+    protected String countryFlag;
+
+    public SeaTransport(String model, int maxPassengers, int maxSpeed, boolean isSailingWithWind, String countryFlag) {
         super(model, maxPassengers, maxSpeed);
-        this.isSailingWithWind = false;
-        this.countryFlag = "";
+        this.isSailingWithWind = isSailingWithWind() ;
+        this.countryFlag = countryFlag;
     }
 
     public boolean isSailingWithWind() {
@@ -27,8 +29,25 @@ public  class SeaTransport extends TransportationVehicle {
         return countryFlag;
     }
 
-    public String getType() {
+    /**public String getType() {
         return "Sea";
+    }*/
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        SeaTransport that = (SeaTransport) o;
+
+        if (isSailingWithWind != that.isSailingWithWind) return false;
+        return Objects.equals(countryFlag, that.countryFlag);
+    }
+
+    public String toString() {
+        String result = super.toString() + " Under " + countryFlag + " flag, ";
+        result += isSailingWithWind ? "with" : "against";
+        return result + " the wind.";
     }
 
 }

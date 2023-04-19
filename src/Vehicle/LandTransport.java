@@ -1,6 +1,6 @@
 package Vehicle;
 
-public abstract class LandTransport extends TransportationVehicle implements Motorized, NonMotorized{
+public abstract class LandTransport extends TransportationVehicle {
 
     private int numOfWheels;
     private String roadType;

@@ -1,17 +1,17 @@
 package Vehicle;
+import java.util.Objects;
 
 public class SpyGlider extends AirTransport implements NonMotorized{
 
     private String powerSource;
-    private char energyScore;
+    private EnergyScore energyScore;
 
-    public SpyGlider(String maxSpeed, int energyScore) {
-        super("classified", 1, 50);
-        this.powerSource = "Non-motorized";
-        this.energyScore = (char) energyScore;
-        setLicenseType("C");
-        setIsMilitary(true);
+    public SpyGlider(String powerSource) {
+        super("classified", 1, 50, "Military");
+        this.powerSource = "";
+        setEnergyScore(EnergyScore.C);
     }
+
 
     public void setPowerSource(String powerSource) {
         this.powerSource = powerSource;
@@ -21,33 +21,33 @@ public class SpyGlider extends AirTransport implements NonMotorized{
         return powerSource;
     }
 
-    public void setEnergyScore(String energyScore) {
-        this.energyScore = energyScore.charAt(0);
+    public void setEnergyScore(EnergyScore energyScore) {
+        this.energyScore = energyScore;
     }
 
-    public char getEnergyScore() {
+    public EnergyScore getEnergyScore() {
         return energyScore;
     }
 
-    public void setAvgFuelConsumption(double avgFuelConsumption) {
-        // No fuel consumption for non-motorized vehicles
+    public String getType() {
+        return "SpyGlider";
     }
 
-    public double getAverageFuelConsumption() {
-        return 0;
+    public String toString() {
+        return getType() + ": " + super.toString() + "Source power: " + getPowerSource() +
+                "the energy score is: " + getEnergyScore() + ".";
     }
 
-    public void setAvgLifetime(int avgLifetime) {
-        // No engine life for non-motorized vehicles
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        SpyGlider spyGlider = (SpyGlider) o;
+
+        if (!Objects.equals(powerSource, spyGlider.powerSource))
+            return false;
+        return energyScore == spyGlider.energyScore;
     }
 
-    public int getAvgLifetime() {
-        return 0;
-    }
-
-
-    @Override
-    public String getLicenseType() {
-        return null;
-    }
 }

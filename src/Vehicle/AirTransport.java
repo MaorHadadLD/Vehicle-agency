@@ -1,29 +1,41 @@
 package Vehicle;
 
-public abstract class AirTransport extends TransportationVehicle implements Commercial{
+import java.util.Objects;
 
-    private boolean isMilitary;
-    private String licenseType;
+public abstract class AirTransport extends TransportationVehicle{
 
-    public AirTransport(String model, int maxPassengers, int maxSpeed) {
+    private String usefor;
+
+
+    public AirTransport(String model, int maxPassengers, int maxSpeed, String use) {
         super(model, maxPassengers, maxSpeed);
-        this.isMilitary = false;
-        this.licenseType = "";
+        this.usefor = use;
     }
 
-    public void setIsMilitary(boolean isMilitary) {
-        this.isMilitary = isMilitary;
+    public String getUsefor() {
+        return usefor;
     }
 
-    public boolean isMilitary() {
-        return isMilitary;
+    public void setUsefor(String usefor) {
+        this.usefor = usefor;
     }
 
-    public void setLicenseType(String licenseType) {
-        this.licenseType = licenseType;
-    }
-
-    public String getType() {
+   public String getType() {
         return "Air";
     }
+
+    public String toString() {
+        return super.toString() + " The use is made for the benefit of the " + usefor + ",";
+    }
+
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        if(!super.equals(o)) return false;
+
+        AirTransport airTransport = (AirTransport) o;
+        return Objects.equals(usefor, airTransport.usefor);
+    }
+
+
 }
