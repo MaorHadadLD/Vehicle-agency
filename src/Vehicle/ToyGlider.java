@@ -13,8 +13,6 @@ public class ToyGlider extends AirTransport implements NonMotorized{
         setEnergyScore(EnergyScore.A);
     }
 
-
-
     @Override
     public void setPowerSource(String powerSource) {
         this.powerSource = powerSource;
@@ -34,6 +32,10 @@ public class ToyGlider extends AirTransport implements NonMotorized{
     @Override
     public EnergyScore getEnergyScore() {
         return energyScore;
+    }
+
+    public String getType() {
+        return "ToyGilder";
     }
 
     public String toString() {
