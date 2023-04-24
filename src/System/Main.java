@@ -367,6 +367,11 @@ public class Main {
         }
     }
 
+    /**
+     * Resets the distance traveled for all TransportationVehicle objects in the given dealership.
+     * @param dealership an ArrayList of TransportationVehicle objects representing the
+     *                   vehicles at the dealership
+     */
     private static void resetDistance(ArrayList<TransportationVehicle> dealership) {
         for (int i = 0; i < dealership.size(); i++) {
             if (dealership.get(i) instanceof TransportationVehicle) {
