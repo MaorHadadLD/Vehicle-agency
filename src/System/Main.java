@@ -5,8 +5,22 @@ import Vehicle.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The Main class is responsible for building a car dealership and providing a main menu
+ * for buying and test driving vehicles, resetting the distance traveled for all vehicles,
+ * and changing the flag for all vehicles. It uses an ArrayList to store the dealership's
+ * inventory and a Scanner object to read input from the user.
+ */
 public class Main {
-
+    /**
+     * he main method creates an empty ArrayList of TransportationVehicle objects and a
+     * Scanner object to read input from the user. It then prompts the user to build the
+     * car dealership by adding vehicles of different types to the ArrayList. Once the
+     * dealership is built, the main menu is displayed, allowing the user to buy and test
+     * drive vehicles, reset the distance traveled for all vehicles, and change the flag
+     * for all vehicles. The method exits when the user chooses to exit the program.
+     * @param arg arg an array of command-line arguments for the program (not used)
+     */
     public static void main(String[] arg) {
         ArrayList<TransportationVehicle> dealership = new ArrayList<TransportationVehicle>();
         Scanner sc = new Scanner(System.in);
@@ -98,6 +112,15 @@ public class Main {
             sc.close();
         }
 
+    /**
+     * Adds a Jeep object to the given ArrayList of TransportationVehicle objects, with
+     * the specified model, max passengers, max speed, average fuel consumption, and
+     * average lifetime. If an error occurs during the creation of the Jeep object, an
+     * error message is printed to the console.
+     * @param dealership an ArrayList of TransportationVehicle objects representing the
+     *                   car dealership's inventory
+     * @param sc a Scanner object used to read input from the user
+     */
         private static void addJeep(ArrayList<TransportationVehicle> dealership, Scanner sc) {
                 try {
                     System.out.println("Enter model: ");
