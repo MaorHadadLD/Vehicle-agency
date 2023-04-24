@@ -202,6 +202,14 @@ public class Main {
 
     }
 
+    /**
+     * Adds a ToyGlider object to the given ArrayList of TransportationVehicle objects.
+     * If an error occurs during the creation of the ToyGlider object, an error message
+     * is printed to the console.
+     * @param dealership an ArrayList of TransportationVehicle objects representing the
+     *                   car dealership's inventory
+     * @param sc sc a Scanner object used to read input from the user
+     */
     private static void addToyGilder(ArrayList<TransportationVehicle> dealership, Scanner sc) {
         try {
             dealership.add(new ToyGlider());
