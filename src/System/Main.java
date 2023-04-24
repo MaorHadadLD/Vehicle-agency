@@ -158,12 +158,94 @@ public class Main {
         int buyChoice = sc.nextInt();
         sc.nextLine();
         if (buyChoice > 0 && buyChoice <= dealership.size()) {
-            TransportationVehicle vehicle = dealership.remove(buyChoice - 1);
-            System.out.println("You have bought a " + vehicle.getmodel() + "!");
+            TransportationVehicle vehicle = dealership.get(buyChoice - 1);
+            System.out.println("Enter the details of the vehicle you want to buy: ");
+            TransportationVehicle purchasedVehicle = null;
+            if (vehicle instanceof Jeep) {
+                purchasedVehicle = createJeep(sc);
+            } else if (vehicle instanceof Frigate) {
+                purchasedVehicle = createFrigate(sc);
+            } else if (vehicle instanceof SpyGlider) {
+                purchasedVehicle = createSpyGlider(sc);
+            } else if (vehicle instanceof ToyGlider) {
+                purchasedVehicle = createToyGlider(sc);
+            }
+            if (purchasedVehicle != null && vehicle.equals(purchasedVehicle)) {
+                dealership.remove(vehicle);
+                System.out.println("You have bought a " + vehicle.getType() + "!");
+            } else {
+                System.out.println("The entered details do not match any vehicle in the dealership.");
+            }
         } else {
             System.out.println("Invalid choice!");
         }
     }
+
+    private static Jeep createJeep(Scanner sc) {
+        System.out.println("Enter model: ");
+        String model = sc.nextLine();
+        System.out.println("Please enter the max passengers:");
+        int maxPassengers = sc.nextInt();
+        System.out.println("Please enter the max speed:");
+        int maxSpeed = sc.nextInt();
+        System.out.println("Please enter the avg fuel consumption:");
+        int avgFuelConsumption = sc.nextInt();
+        System.out.println("Please enter the avg lifetime:");
+        int avgLifetime = sc.nextInt();
+        return new Jeep(model, maxPassengers, maxSpeed, avgFuelConsumption, avgLifetime);
+    }
+
+    private static Frigate createFrigate(Scanner sc) {
+        System.out.println("Enter the model of frigate:");
+        String model = sc.nextLine();
+        System.out.println("Please enter the max passengers:");
+        int maxPassengers = sc.nextInt();
+        System.out.println("Please enter the max speed:");
+        int maxSpeed = sc.nextInt();
+        System.out.println("Please enter the avg fuel consumption:");
+        int avgFuelConsumption = sc.nextInt();
+        System.out.println("Please enter the wind direction (with/against the wind):");
+        boolean isWindDirectionWithWind = false;
+        sc.nextLine(); // Consume the new line character
+        String windDirection = sc.nextLine();
+        if (windDirection.equalsIgnoreCase("with the wind")) {
+            isWindDirectionWithWind = true;
+        } else if (!windDirection.equalsIgnoreCase("against the wind")) {
+            return null;
+        }
+        return new Frigate(model, maxPassengers, maxSpeed, isWindDirectionWithWind);
+    }
+
+    private static SpyGlider createSpyGlider(Scanner sc) {
+        System.out.println("Please enter power source of the spy glider:");
+        String powerSource = sc.nextLine();
+        return new SpyGlider(powerSource);
+    }
+
+    private static ToyGlider createToyGlider(Scanner sc) {
+        return new ToyGlider();
+    }
+
+
+        /**
+        private static void buyVehicle(ArrayList<TransportationVehicle> dealership, Scanner sc) {
+            System.out.println("Please choose a vehicle to buy: ");
+            if (dealership.isEmpty()) {
+                System.out.println("There are no vehicles to buy.");
+            }
+            for (int i = 0; i < dealership.size(); i++) {
+                System.out.println("Vehicle #" + (i+1) + ": " + dealership.get(i).toString());
+            }
+            int buyChoice = sc.nextInt();
+            sc.nextLine();
+            if (buyChoice > 0 && buyChoice <= dealership.size()) {
+                TransportationVehicle vehicle = dealership.remove(buyChoice - 1);
+                System.out.println("You have bought a " + vehicle.getmodel() + "!");
+            } else {
+                System.out.println("Invalid choice!");
+            }
+        }*/
+
 
     private static void testDriveVehicle(ArrayList<TransportationVehicle> dealership, Scanner sc) {
         System.out.println("Please enter the details of the vehicle for the test drive: ");
@@ -181,14 +263,16 @@ public class Main {
         if (vehicle == null) {
             System.out.println("Vehicle not found!");
         }
-        System.out.println("Distance of test drive (in km): ");
-        double distance = sc.nextDouble();
-        sc.nextLine();
-        if (vehicle instanceof TransportationVehicle) {
-            ((TransportationVehicle) vehicle).move(distance);
-            System.out.println("Test drive completed! Distance traveled: " + ((TransportationVehicle) vehicle).getDistanceTraveled() + " km.");
-        } else {
-            System.out.println("This vehicle is not a normal vehicle and cannot be test driven!");
+        else {
+            System.out.println("Distance of test drive (in km): ");
+            double distance = sc.nextDouble();
+            sc.nextLine();
+            if (vehicle instanceof TransportationVehicle) {
+                ((TransportationVehicle) vehicle).move(distance);
+                System.out.println("Test drive completed! Distance traveled: " + ((TransportationVehicle) vehicle).getDistanceTraveled() + " km.");
+            } else {
+                System.out.println("This vehicle is not a normal vehicle and cannot be test driven!");
+            }
         }
     }
 
@@ -212,6 +296,5 @@ public class Main {
         }
         System.out.println("Flag changed for all the sailing vessel.");
     }
-
-    }
+}
 

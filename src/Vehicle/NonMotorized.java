@@ -1,9 +1,5 @@
 package Vehicle;
 
-/**
- * The EnergyScore enumeration represents the energy efficiency score of a NonMotorized
- * vehicle, with options A, B, and C.
- */
 enum EnergyScore {
     A,
     B,
