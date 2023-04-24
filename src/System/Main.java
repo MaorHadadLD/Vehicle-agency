@@ -99,132 +99,155 @@ public class Main {
         }
 
         private static void addJeep(ArrayList<TransportationVehicle> dealership, Scanner sc) {
-            System.out.println("Enter model: ");
+                try {
+                    System.out.println("Enter model: ");
+                    String model = sc.nextLine();
+                    System.out.println("Please enter the  max passengers:");
+                    int maxPassengers = sc.nextInt();
+                    System.out.println("Please enter the  max speed:");
+                    int maxSpeed = sc.nextInt();
+                    System.out.println("Please enter the avg fuel consumption:");
+                    int avgFuelConsumption =  sc.nextInt();
+                    System.out.println("Please enter the avg lifetime:");
+                    int avgLifetime = sc.nextInt();
+                    sc.nextLine();
+                    dealership.add(new Jeep(model, maxPassengers, maxSpeed, avgFuelConsumption, avgLifetime));
+                    System.out.println("Jeep created successfully!");
+                } catch (Exception e) {
+                    System.out.println("Error creating Jeep: " + e.getMessage());
+                }
+        }
+
+    private static void addFrigate(ArrayList<TransportationVehicle> dealership, Scanner sc) {
+        try {
+            System.out.println("Enter the model of frigate:");
             String model = sc.nextLine();
             System.out.println("Please enter the  max passengers:");
             int maxPassengers = sc.nextInt();
             System.out.println("Please enter the  max speed:");
             int maxSpeed = sc.nextInt();
             System.out.println("Please enter the avg fuel consumption:");
-            int avgFuelConsumption =  sc.nextInt();
-            System.out.println("Please enter the avg lifetime:");
             int avgLifetime = sc.nextInt();
-            dealership.add(new Jeep(model, maxPassengers, maxSpeed, avgFuelConsumption, avgLifetime));
+            do {
+                System.out.println("Please enter the wind direction:");
+                System.out.println("1. with the wind");
+                System.out.println("2. against the wind");
+                System.out.println("Please enter your option:");
+                int windDirection = sc.nextInt();
+                if (windDirection == 1) {
+                    dealership.add(new Frigate(model, maxPassengers, maxSpeed, true));
+                } else if (windDirection == 2) {
+                    dealership.add(new Frigate(model, maxPassengers, maxSpeed, false));
+                } else {
+                    System.out.println("Invalid option. Please choose again.");
+                }
+                System.out.println("Frigate creating successfully!");
+            } while (dealership == null);
+        } catch (Exception e) {
+            System.out.println("Error creating Frigate: " + e.getMessage());
         }
 
-    private static void addFrigate(ArrayList<TransportationVehicle> dealership, Scanner sc) {
-        System.out.println("Enter the model of frigate:");
-        String model = sc.nextLine();
-        System.out.println("Please enter the  max passengers:");
-        int maxPassengers = sc.nextInt();
-        System.out.println("Please enter the  max speed:");
-        int maxSpeed = sc.nextInt();
-        System.out.println("Please enter the avg fuel consumption:");
-        int avgLifetime = sc.nextInt();
-        do {
-            System.out.println("Please enter the wind direction:");
-            System.out.println("1. with the wind");
-            System.out.println("2. against the wind");
-            System.out.println("Please enter your option:");
-            int windDirection = sc.nextInt();
-            if (windDirection == 1) {
-                dealership.add(new Frigate(model, maxPassengers, maxSpeed, true));
-            } else if (windDirection == 2) {
-                dealership.add(new Frigate(model, maxPassengers, maxSpeed, false));
-            } else {
-                System.out.println("Invalid option. Please choose again.");
-            }
-        } while (dealership == null);
     }
 
     private static void addSpyGilder(ArrayList<TransportationVehicle> dealership, Scanner sc) {
-        System.out.println("Please enter power source of the spy glider:");
-        String powerSource = sc.nextLine();
-        dealership.add(new SpyGlider(powerSource));
+        try {
+            System.out.println("Please enter power source of the spy glider:");
+            String powerSource = sc.nextLine();
+            dealership.add(new SpyGlider(powerSource));
+            System.out.println("SpyGilder creating successfully!");
+        } catch (Exception e) {
+            System.out.println("Error creating SpyGilder: " + e.getMessage());
+        }
+
     }
 
     private static void addToyGilder(ArrayList<TransportationVehicle> dealership, Scanner sc) {
-        dealership.add(new ToyGlider());
-    }
-
-    private static void buyVehicle(ArrayList<TransportationVehicle> dealership, Scanner sc) {
-        System.out.println("Please choose a vehicle to buy: ");
-        if (dealership.isEmpty()) {
-            System.out.println("There are no vehicles to buy.");
-        }
-        for (int i = 0; i < dealership.size(); i++) {
-            System.out.println("Vehicle #" + (i+1) + ": " + dealership.get(i).toString());
-        }
-        int buyChoice = sc.nextInt();
-        sc.nextLine();
-        if (buyChoice > 0 && buyChoice <= dealership.size()) {
-            TransportationVehicle vehicle = dealership.get(buyChoice - 1);
-            System.out.println("Enter the details of the vehicle you want to buy: ");
-            TransportationVehicle purchasedVehicle = null;
-            if (vehicle instanceof Jeep) {
-                purchasedVehicle = createJeep(sc);
-            } else if (vehicle instanceof Frigate) {
-                purchasedVehicle = createFrigate(sc);
-            } else if (vehicle instanceof SpyGlider) {
-                purchasedVehicle = createSpyGlider(sc);
-            } else if (vehicle instanceof ToyGlider) {
-                purchasedVehicle = createToyGlider(sc);
-            }
-            if (purchasedVehicle != null && vehicle.equals(purchasedVehicle)) {
-                dealership.remove(vehicle);
-                System.out.println("You have bought a " + vehicle.getType() + "!");
-            } else {
-                System.out.println("The entered details do not match any vehicle in the dealership.");
-            }
-        } else {
-            System.out.println("Invalid choice!");
+        try {
+            dealership.add(new ToyGlider());
+            System.out.println("ToyGilder creating successfully!");
+        } catch (Exception e) {
+            System.out.println("Error creating ToyGilder: " + e.getMessage());
         }
     }
 
-    private static Jeep createJeep(Scanner sc) {
-        System.out.println("Enter model: ");
-        String model = sc.nextLine();
-        System.out.println("Please enter the max passengers:");
-        int maxPassengers = sc.nextInt();
-        System.out.println("Please enter the max speed:");
-        int maxSpeed = sc.nextInt();
-        System.out.println("Please enter the avg fuel consumption:");
-        int avgFuelConsumption = sc.nextInt();
-        System.out.println("Please enter the avg lifetime:");
-        int avgLifetime = sc.nextInt();
-        return new Jeep(model, maxPassengers, maxSpeed, avgFuelConsumption, avgLifetime);
-    }
+     private static void buyVehicle(ArrayList<TransportationVehicle> dealership, Scanner sc) {
+         System.out.println("Please choose a vehicle to buy: ");
+         if (dealership.isEmpty()) {
+             System.out.println("There are no vehicles to buy.");
+         }
+         for (int i = 0; i < dealership.size(); i++) {
+             System.out.println("Vehicle #" + (i+1) + ": " + dealership.get(i).toString());
+         }
+         int buyChoice = sc.nextInt();
+         sc.nextLine();
+         if (buyChoice > 0 && buyChoice <= dealership.size()) {
+             TransportationVehicle vehicle = dealership.get(buyChoice - 1);
+             System.out.println("Enter the details of the vehicle you want to buy: ");
+             TransportationVehicle purchasedVehicle = null;
+             if (vehicle instanceof Jeep) {
+                 purchasedVehicle = createJeep(sc);
+             } else if (vehicle instanceof Frigate) {
+                 purchasedVehicle = createFrigate(sc);
+             } else if (vehicle instanceof SpyGlider) {
+                 purchasedVehicle = createSpyGlider(sc);
+             } else if (vehicle instanceof ToyGlider) {
+                 purchasedVehicle = createToyGlider();
+             }
+             if (purchasedVehicle != null && vehicle.equals(purchasedVehicle)) {
+                 dealership.remove(vehicle);
+                 System.out.println("You have bought a " + vehicle.getType() + "!");
+             } else {
+                 System.out.println("The entered details do not match any vehicle in the dealership.");
+             }
+         } else {
+             System.out.println("Invalid choice!");
+         }
+     }
 
-    private static Frigate createFrigate(Scanner sc) {
-        System.out.println("Enter the model of frigate:");
-        String model = sc.nextLine();
-        System.out.println("Please enter the max passengers:");
-        int maxPassengers = sc.nextInt();
-        System.out.println("Please enter the max speed:");
-        int maxSpeed = sc.nextInt();
-        System.out.println("Please enter the avg fuel consumption:");
-        int avgFuelConsumption = sc.nextInt();
-        System.out.println("Please enter the wind direction (with/against the wind):");
-        boolean isWindDirectionWithWind = false;
-        sc.nextLine(); // Consume the new line character
-        String windDirection = sc.nextLine();
-        if (windDirection.equalsIgnoreCase("with the wind")) {
-            isWindDirectionWithWind = true;
-        } else if (!windDirection.equalsIgnoreCase("against the wind")) {
-            return null;
-        }
-        return new Frigate(model, maxPassengers, maxSpeed, isWindDirectionWithWind);
-    }
+     private static Jeep createJeep(Scanner sc) {
+         System.out.println("Enter model: ");
+         String model = sc.nextLine();
+         System.out.println("Please enter the max passengers:");
+         int maxPassengers = sc.nextInt();
+         System.out.println("Please enter the max speed:");
+         int maxSpeed = sc.nextInt();
+         System.out.println("Please enter the avg fuel consumption:");
+         int avgFuelConsumption = sc.nextInt();
+         System.out.println("Please enter the avg lifetime:");
+         int avgLifetime = sc.nextInt();
+         return new Jeep(model, maxPassengers, maxSpeed, avgFuelConsumption, avgLifetime);
+     }
 
-    private static SpyGlider createSpyGlider(Scanner sc) {
-        System.out.println("Please enter power source of the spy glider:");
-        String powerSource = sc.nextLine();
-        return new SpyGlider(powerSource);
-    }
+     private static Frigate createFrigate(Scanner sc) {
+         System.out.println("Enter the model of frigate:");
+         String model = sc.nextLine();
+         System.out.println("Please enter the max passengers:");
+         int maxPassengers = sc.nextInt();
+         System.out.println("Please enter the max speed:");
+         int maxSpeed = sc.nextInt();
+         System.out.println("Please enter the avg fuel consumption:");
+         int avgFuelConsumption = sc.nextInt();
+         System.out.println("Please enter the wind direction (with/against the wind):");
+         boolean isWindDirectionWithWind = false;
+         sc.nextLine(); // Consume the new line character
+         String windDirection = sc.nextLine();
+         if (windDirection.equalsIgnoreCase("with the wind")) {
+             isWindDirectionWithWind = true;
+         } else if (!windDirection.equalsIgnoreCase("against the wind")) {
+             return null;
+         }
+         return new Frigate(model, maxPassengers, maxSpeed, isWindDirectionWithWind);
+     }
 
-    private static ToyGlider createToyGlider(Scanner sc) {
-        return new ToyGlider();
-    }
+     private static SpyGlider createSpyGlider(Scanner sc) {
+         System.out.println("Please enter power source of the spy glider:");
+         String powerSource = sc.nextLine();
+         return new SpyGlider(powerSource);
+     }
+
+     private static ToyGlider createToyGlider() {
+         return new ToyGlider();
+     }
 
 
         /**
@@ -248,6 +271,9 @@ public class Main {
 
 
     private static void testDriveVehicle(ArrayList<TransportationVehicle> dealership, Scanner sc) {
+        for (int i = 0; i < dealership.size(); i++) {
+            System.out.println("Vehicle #" + (i+1) + ": " + dealership.get(i).toString());
+        }
         System.out.println("Please enter the details of the vehicle for the test drive: ");
         System.out.println("Vehicle type: ");
         String vehicleType = sc.nextLine();
