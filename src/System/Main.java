@@ -182,6 +182,14 @@ public class Main {
 
     }
 
+    /**
+     * Adds a SpyGlider object to the given ArrayList of TransportationVehicle objects,
+     * with the specified power source. If an error occurs during the creation of the
+     * SpyGlider object, an error message is printed to the console.
+     * @param dealership an ArrayList of TransportationVehicle objects representing the
+     *                   car dealership's inventory
+     * @param sc a Scanner object used to read input from the user
+     */
     private static void addSpyGilder(ArrayList<TransportationVehicle> dealership, Scanner sc) {
         try {
             System.out.println("Please enter power source of the spy glider:");
