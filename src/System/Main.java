@@ -381,6 +381,12 @@ public class Main {
         System.out.println("Distance traveled reset complete.");
     }
 
+    /**
+     * Changes the flag for all SeaTransport objects in the given dealership to the specified country.
+     * @param dealership  an ArrayList of TransportationVehicle objects representing the
+     *                    vehicles at the dealership
+     * @param sc a Scanner object to read user input
+     */
     private static void changeFlag(ArrayList<TransportationVehicle> dealership, Scanner sc) {
         System.out.println("Please enter the flag details: ");
         System.out.println("Country: ");
