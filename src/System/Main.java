@@ -284,6 +284,11 @@ public class Main {
          return new Jeep(model, maxPassengers, maxSpeed, avgFuelConsumption, avgLifetime);
      }
 
+    /**
+     * Creates a Frigate object with the specified details.
+     * @param sc a Scanner object used to get user input
+     * @return a new Frigate object with the specified details, or null if the wind direction entered is invalid
+     */
      private static Frigate createFrigate(Scanner sc) {
          System.out.println("Enter the model of frigate:");
          String model = sc.nextLine();
@@ -305,16 +310,31 @@ public class Main {
          return new Frigate(model, maxPassengers, maxSpeed, isWindDirectionWithWind);
      }
 
+    /**
+     * Creates a SpyGlider object with the specified power source.
+     * @param sc a Scanner object used to get user input
+     * @return  a new SpyGlider object with the specified power source
+     */
      private static SpyGlider createSpyGlider(Scanner sc) {
          System.out.println("Please enter power source of the spy glider:");
          String powerSource = sc.nextLine();
          return new SpyGlider(powerSource);
      }
 
+    /**
+     * Creates a ToyGlider object.
+     * @return a new ToyGlider object
+     */
      private static ToyGlider createToyGlider() {
          return new ToyGlider();
      }
 
+    /**
+     * Allows a user to test drive a transportation vehicle from a given dealership.
+     * @param dealership an ArrayList of TransportationVehicle objects representing the
+     *                   available vehicles at the dealership
+     * @param sc a Scanner object to read user input
+     */
     private static void testDriveVehicle(ArrayList<TransportationVehicle> dealership, Scanner sc) {
         for (int i = 0; i < dealership.size(); i++) {
             System.out.println("Vehicle #" + (i+1) + ": " + dealership.get(i).toString());
