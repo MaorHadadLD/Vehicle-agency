@@ -219,6 +219,18 @@ public class Main {
         }
     }
 
+    /**
+     * Allows the user to buy a vehicle from the dealership. Displays a list of available vehicles,
+     * prompts the user to select a vehicle to buy, and then prompts the user to enter the details
+     * of the vehicle they want to buy. If the entered details match a vehicle in the dealership,
+     * that vehicle is removed from the dealership and the user is informed that they have bought
+     * a vehicle of the same type. Otherwise, the user is informed that the entered details do not
+     * match any vehicle in the dealership. If the dealership is empty or the user enters an invalid
+     * choice, an appropriate message is displayed.
+     * @param dealership an ArrayList of TransportationVehicle objects representing the vehicles
+     *                   available for purchase at the dealership.
+     * @param sc a Scanner object used to read input from the user.
+     */
      private static void buyVehicle(ArrayList<TransportationVehicle> dealership, Scanner sc) {
          System.out.println("Please choose a vehicle to buy: ");
          if (dealership.isEmpty()) {
@@ -253,6 +265,11 @@ public class Main {
          }
      }
 
+    /**
+     * Creates a Jeep object with the specified details.
+     * @param sc a Scanner object used to get user input
+     * @return a new Jeep object with the specified details
+     */
      private static Jeep createJeep(Scanner sc) {
          System.out.println("Enter model: ");
          String model = sc.nextLine();
@@ -297,27 +314,6 @@ public class Main {
      private static ToyGlider createToyGlider() {
          return new ToyGlider();
      }
-
-
-        /**
-        private static void buyVehicle(ArrayList<TransportationVehicle> dealership, Scanner sc) {
-            System.out.println("Please choose a vehicle to buy: ");
-            if (dealership.isEmpty()) {
-                System.out.println("There are no vehicles to buy.");
-            }
-            for (int i = 0; i < dealership.size(); i++) {
-                System.out.println("Vehicle #" + (i+1) + ": " + dealership.get(i).toString());
-            }
-            int buyChoice = sc.nextInt();
-            sc.nextLine();
-            if (buyChoice > 0 && buyChoice <= dealership.size()) {
-                TransportationVehicle vehicle = dealership.remove(buyChoice - 1);
-                System.out.println("You have bought a " + vehicle.getmodel() + "!");
-            } else {
-                System.out.println("Invalid choice!");
-            }
-        }*/
-
 
     private static void testDriveVehicle(ArrayList<TransportationVehicle> dealership, Scanner sc) {
         for (int i = 0; i < dealership.size(); i++) {
